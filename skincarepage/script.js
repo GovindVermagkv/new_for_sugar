@@ -1,3 +1,13 @@
+"use strict";
+import data  from "../data.json" assert { type: "json"};
+
+// let data = {data:[]} 
+// if(!data && !data.data && data.data.length <= 0){
+//   const Div = document.getElemetById("skincare_product_area")
+//   Div.innerHTML= "No Product avaible"
+// }
+const productData  = data.data;
+
 const swiper = new Swiper('.swiper', {
   autoplay: {
     delay: 2000,
@@ -50,40 +60,71 @@ var show_product_area = document.querySelector(".show_product_area")
 // var iddd = []
 
 skincare.addEventListener("click", function (event) {
-  fetch(
-    ` http://makeup-api.herokuapp.com/api/v1/products.json?`
-  ) //fetching api data
-    .then((response) => response.json()) //text --> json
-    .then((data) => {
-      console.log(data)
-      container.innerHTML = "";
-      for (let i = 110; i < 150; i++) {
-        let makeup = data[i];
-        //console.log(makeup)
-        let result = `
-        <div class="box" id="box">  
-        <img src="${makeup.image_link}" class="click image" alt="image"  id="${makeup.id}">
-             <p class="Makeup_Name" id="naming">  ${makeup.name}</p>
-             <h4 class="Makeup_Price">$${makeup.price} <span>(20 % off)</span></h4>
-                <p><i class="fa fa-star" aria-hidden="true"></i>5.6
-                 (125)</p> 
-         <div class="add_cart">   
-         <i class="fa fa-heart" aria-hidden="true"id="heartimg"></i> 
-        <h4 class="add"><a onclick="lungs(event)" id="add" class="${makeup.id}"> Add to Cart</a> </h4>
-        </div> 
-        </div>`;
+  console.log("hello");
+  // fetch(
+  //   ` http://makeup-api.herokuapp.com/api/v1/products.json?`
+  // ) //fetching api productData 
+  //   .then((response) => response.json()) //text --> json
+  //   .then((data) => {
+  //     console.log(data)
+  //     container.innerHTML = "";
+  //     for (let i = 110; i < 150; i++) {
+  //       let makeup = data[i];
+  //       //console.log(makeup)
+  //       let result = `
+  //       <div class="box" id="box">  
+  //       <img src="${makeup.image_link}" class="click image" alt="image"  id="${makeup.id}">
+  //            <p class="Makeup_Name" id="naming">  ${makeup.name}</p>
+  //            <h4 class="Makeup_Price">$${makeup.price} <span>(20 % off)</span></h4>
+  //               <p><i class="fa fa-star" aria-hidden="true"></i>5.6
+  //                (125)</p> 
+  //        <div class="add_cart">   
+  //        <i class="fa fa-heart" aria-hidden="true"id="heartimg"></i> 
+  //       <h4 class="add"><a onclick="lungs(event)" id="add" class="${makeup.id}"> Add to Cart</a> </h4>
+  //       </div> 
+  //       </div>`;
 
-        // iddd.push(`${makeup.id}`)
-        localStorage.setItem("local_name",`${makeup.name}`)
-        localStorage.setItem("local_discription",`${makeup.description}`)
-        localStorage.setItem("local_price",`${makeup.price}`)
+  //       // iddd.push(`${makeup.id}`)
+  //       localStorage.setItem("local_name",`${makeup.name}`)
+  //       localStorage.setItem("local_discription",`${makeup.description}`)
+  //       localStorage.setItem("local_price",`${makeup.price}`)
         
 
-        container.innerHTML += result;
-      }
-      // console.log(iddd);
-    })
-    .catch((err) => alert("Nothing found"));
+  //       container.innerHTML += result;
+  //     }
+  
+  //   })
+  //   .catch((err) => alert("Nothing found"));
+
+
+  console.log(productData )
+  container.innerHTML = "";
+  for (let i = 110; i < 150; i++) {
+    let makeup = productData [i];
+    //console.log(makeup)
+    let result = `
+    <div class="box" id="box">  
+    <img src="${makeup.image_link}" class="click image" alt="image"  id="${makeup.id}">
+         <p class="Makeup_Name" id="naming">  ${makeup.name}</p>
+         <h4 class="Makeup_Price">$${makeup.price} <span>(20 % off)</span></h4>
+            <p><i class="fa fa-star" aria-hidden="true"></i>5.6
+             (125)</p> 
+     <div class="add_cart">   
+     <i class="fa fa-heart" aria-hidden="true"id="heartimg"></i> 
+    <h4 class="add"><a onclick="lungs(event)" id="add" class="${makeup.id}"> Add to Cart</a> </h4>
+    </div> 
+    </div>`;
+
+    // iddd.push(`${makeup.id}`)
+    localStorage.setItem("local_name",`${makeup.name}`)
+    localStorage.setItem("local_discription",`${makeup.description}`)
+    localStorage.setItem("local_price",`${makeup.price}`)
+    
+
+    container.innerHTML += result;
+  }
+
+
 
 
 });
@@ -144,209 +185,373 @@ container.addEventListener("click", function productShow(e){
 
 
 moisture.onclick = function () {
-  fetch(
-    ` http://makeup-api.herokuapp.com/api/v1/products.json?`
-  ) //fetching api data
-    .then((response) => response.json()) //text --> json
-    .then((data) => {
-      console.log(data)
-      container.innerHTML = "";
-      for (let i = 150; i < 200; i++) {
-        let makeup = data[i];
-        //console.log(makeup)
-        let result = `
-        <div class=box>  
-        <img src="${makeup.image_link}" class="image" alt="image" >
-             <p class="Makeup_Name">  ${makeup.name}</p>
-             <h4 class="Makeup_Price">$${makeup.price} <span>(20 % off)</span></h4>
-                <p><i class="fa fa-star" aria-hidden="true"></i>5.6
-                 (125)</p> 
-         <div class="add_cart">   
-         <i class="fa fa-heart" aria-hidden="true"id="heartimg"></i> 
-        <h4 class="add"> Add to Cart</h4>
-        </div> 
-        </div>`;
-        container.innerHTML += result;
-      }
-    });
+  // fetch(
+  //   ` http://makeup-api.herokuapp.com/api/v1/products.json?`
+  // ) //fetching api data
+  //   .then((response) => response.json()) //text --> json
+  //   .then((data) => {
+  //     console.log(productData )
+  //     container.innerHTML = "";
+  //     for (let i = 150; i < 200; i++) {
+  //       let makeup = productData [i];
+  //       //console.log(makeup)
+  //       let result = `
+  //       <div class=box>  
+  //       <img src="${makeup.image_link}" class="image" alt="image" >
+  //            <p class="Makeup_Name">  ${makeup.name}</p>
+  //            <h4 class="Makeup_Price">$${makeup.price} <span>(20 % off)</span></h4>
+  //               <p><i class="fa fa-star" aria-hidden="true"></i>5.6
+  //                (125)</p> 
+  //        <div class="add_cart">   
+  //        <i class="fa fa-heart" aria-hidden="true"id="heartimg"></i> 
+  //       <h4 class="add"> Add to Cart</h4>
+  //       </div> 
+  //       </div>`;
+  //       container.innerHTML += result;
+  //     }
+  //   });
   // .catch((err) => alert("Nothing found"));
+
+
+  console.log(productData )
+  container.innerHTML = "";
+  for (let i = 150; i < 200; i++) {
+    let makeup = productData [i];
+    //console.log(makeup)
+    let result = `
+    <div class=box>  
+    <img src="${makeup.image_link}" class="image" alt="image" >
+         <p class="Makeup_Name">  ${makeup.name}</p>
+         <h4 class="Makeup_Price">$${makeup.price} <span>(20 % off)</span></h4>
+            <p><i class="fa fa-star" aria-hidden="true"></i>5.6
+             (125)</p> 
+     <div class="add_cart">   
+     <i class="fa fa-heart" aria-hidden="true"id="heartimg"></i> 
+    <h4 class="add"> Add to Cart</h4>
+    </div> 
+    </div>`;
+    container.innerHTML += result;
+  }
+
+
+
 };
 
 sunscream.addEventListener("click", function () {
-  fetch(
-    ` http://makeup-api.herokuapp.com/api/v1/products.json?`
-  ) //fetching api data
-    .then((response) => response.json()) //text --> json
-    .then((data) => {
-      console.log(data)
-      container.innerHTML = "";
-      for (let i = 11; i < 80; i++) {
-        let makeup = data[i];
-        //console.log(makeup)
-        let result = `
-        <div class=box>  
-        <img src="${makeup.image_link}" class="image" alt="image" >
-             <p class="Makeup_Name">  ${makeup.name}</p>
-             <h4 class="Makeup_Price">$${makeup.price} <span>(20 % off)</span></h4>
-                <p><i class="fa fa-star" aria-hidden="true"></i>5.6
-                 (125)</p> 
-         <div class="add_cart">   
-         <i class="fa fa-heart" aria-hidden="true"id="heartimg"></i> 
-        <h4 class="add"> Add to Cart</h4>
-        </div> 
-        </div>`;
-        container.innerHTML += result;
-      }
-    });
+  // fetch(
+  //   ` http://makeup-api.herokuapp.com/api/v1/products.json?`
+  // ) //fetching api data
+  //   .then((response) => response.json()) //text --> json
+  //   .then((data) => {
+  //     console.log(productData )
+  //     container.innerHTML = "";
+  //     for (let i = 11; i < 80; i++) {
+  //       let makeup = productData [i];
+  //       //console.log(makeup)
+  //       let result = `
+  //       <div class=box>  
+  //       <img src="${makeup.image_link}" class="image" alt="image" >
+  //            <p class="Makeup_Name">  ${makeup.name}</p>
+  //            <h4 class="Makeup_Price">$${makeup.price} <span>(20 % off)</span></h4>
+  //               <p><i class="fa fa-star" aria-hidden="true"></i>5.6
+  //                (125)</p> 
+  //        <div class="add_cart">   
+  //        <i class="fa fa-heart" aria-hidden="true"id="heartimg"></i> 
+  //       <h4 class="add"> Add to Cart</h4>
+  //       </div> 
+  //       </div>`;
+  //       container.innerHTML += result;
+  //     }
+  //   });
   // .catch((err) => alert("Nothing found"));
+
+
+  console.log(productData )
+  container.innerHTML = "";
+  for (let i = 11; i < 80; i++) {
+    let makeup = productData [i];
+    //console.log(makeup)
+    let result = `
+    <div class=box>  
+    <img src="${makeup.image_link}" class="image" alt="image" >
+         <p class="Makeup_Name">  ${makeup.name}</p>
+         <h4 class="Makeup_Price">$${makeup.price} <span>(20 % off)</span></h4>
+            <p><i class="fa fa-star" aria-hidden="true"></i>5.6
+             (125)</p> 
+     <div class="add_cart">   
+     <i class="fa fa-heart" aria-hidden="true"id="heartimg"></i> 
+    <h4 class="add"> Add to Cart</h4>
+    </div> 
+    </div>`;
+    container.innerHTML += result;
+  }
+
+
 });
 
 setting.addEventListener("click", function (event) {
-  fetch(
-    ` http://makeup-api.herokuapp.com/api/v1/products.json?`
-  ) //fetching api data
-    .then((response) => response.json()) //text --> json
-    .then((data) => {
-      console.log(data)
-      container.innerHTML = "";
-      for (let i = 90; i < 100; i++) {
-        let makeup = data[i];
-        //console.log(makeup)
-        let result = `
-        <div class=box>  
-        <img src="${makeup.image_link}" class="image" alt="image" >
-             <p class="Makeup_Name">  ${makeup.name}</p>
-             <h4 class="Makeup_Price">$${makeup.price} <span>(20 % off)</span></h4>
-                <p><i class="fa fa-star" aria-hidden="true"></i>5.6
-                 (125)</p> 
-         <div class="add_cart">   
-         <i class="fa fa-heart" aria-hidden="true"id="heartimg"></i> 
-        <h4 class="add"> Add to Cart</h4>
-        </div> 
-        </div>`;
-        container.innerHTML += result;
-      }
-    });
+  // fetch(
+  //   ` http://makeup-api.herokuapp.com/api/v1/products.json?`
+  // ) //fetching api data
+  //   .then((response) => response.json()) //text --> json
+  //   .then((data) => {
+  //     console.log(data)
+  //     container.innerHTML = "";
+  //     for (let i = 90; i < 100; i++) {
+  //       let makeup = productData [i];
+  //       //console.log(makeup)
+  //       let result = `
+  //       <div class=box>  
+  //       <img src="${makeup.image_link}" class="image" alt="image" >
+  //            <p class="Makeup_Name">  ${makeup.name}</p>
+  //            <h4 class="Makeup_Price">$${makeup.price} <span>(20 % off)</span></h4>
+  //               <p><i class="fa fa-star" aria-hidden="true"></i>5.6
+  //                (125)</p> 
+  //        <div class="add_cart">   
+  //        <i class="fa fa-heart" aria-hidden="true"id="heartimg"></i> 
+  //       <h4 class="add"> Add to Cart</h4>
+  //       </div> 
+  //       </div>`;
+  //       container.innerHTML += result;
+  //     }
+  //   });
   // .catch((err) => alert("Nothing found"));
+
+
+  console.log(data)
+  container.innerHTML = "";
+  for (let i = 90; i < 100; i++) {
+    let makeup = productData [i];
+    //console.log(makeup)
+    let result = `
+    <div class=box>  
+    <img src="${makeup.image_link}" class="image" alt="image" >
+         <p class="Makeup_Name">  ${makeup.name}</p>
+         <h4 class="Makeup_Price">$${makeup.price} <span>(20 % off)</span></h4>
+            <p><i class="fa fa-star" aria-hidden="true"></i>5.6
+             (125)</p> 
+     <div class="add_cart">   
+     <i class="fa fa-heart" aria-hidden="true"id="heartimg"></i> 
+    <h4 class="add"> Add to Cart</h4>
+    </div> 
+    </div>`;
+    container.innerHTML += result;
+  }
+
+
+
 });
 
 cofee.addEventListener("click", function (event) {
-  fetch(
-    ` http://makeup-api.herokuapp.com/api/v1/products.json?`
-  ) //fetching api data
-    .then((response) => response.json()) //text --> json
-    .then((data) => {
-      console.log(data)
-      container.innerHTML = "";
-      for (let i = 0; i < 50; i++) {
-        let makeup = data[i];
-        //console.log(makeup)
-        let result = `
-        <div class=box>  
-        <img src="${makeup.image_link}" class="image" alt="image" >
-             <p class="Makeup_Name">  ${makeup.name}</p>
-             <h4 class="Makeup_Price">$${makeup.price} <span>(20 % off)</span></h4>
-                <p><i class="fa fa-star" aria-hidden="true"></i>5.6
-                 (125)</p> 
-         <div class="add_cart">   
-         <i class="fa fa-heart" aria-hidden="true"id="heartimg"></i> 
-        <h4 class="add"> Add to Cart</h4>
-        </div> 
-        </div>`;
-        container.innerHTML += result;
-      }
-    });
+  // fetch(
+  //   ` http://makeup-api.herokuapp.com/api/v1/products.json?`
+  // ) //fetching api productData 
+  //   .then((response) => response.json()) //text --> json
+  //   .then((productData ) => {
+  //     console.log(productData )
+  //     container.innerHTML = "";
+  //     for (let i = 0; i < 50; i++) {
+  //       let makeup = productData [i];
+  //       //console.log(makeup)
+  //       let result = `
+  //       <div class=box>  
+  //       <img src="${makeup.image_link}" class="image" alt="image" >
+  //            <p class="Makeup_Name">  ${makeup.name}</p>
+  //            <h4 class="Makeup_Price">$${makeup.price} <span>(20 % off)</span></h4>
+  //               <p><i class="fa fa-star" aria-hidden="true"></i>5.6
+  //                (125)</p> 
+  //        <div class="add_cart">   
+  //        <i class="fa fa-heart" aria-hidden="true"id="heartimg"></i> 
+  //       <h4 class="add"> Add to Cart</h4>
+  //       </div> 
+  //       </div>`;
+  //       container.innerHTML += result;
+  //     }
+  //   });
   // .catch((err) => alert("Nothing found"));
+
+  console.log(productData )
+  container.innerHTML = "";
+  for (let i = 0; i < 50; i++) {
+    let makeup = productData [i];
+    //console.log(makeup)
+    let result = `
+    <div class=box>  
+    <img src="${makeup.image_link}" class="image" alt="image" >
+         <p class="Makeup_Name">  ${makeup.name}</p>
+         <h4 class="Makeup_Price">$${makeup.price} <span>(20 % off)</span></h4>
+            <p><i class="fa fa-star" aria-hidden="true"></i>5.6
+             (125)</p> 
+     <div class="add_cart">   
+     <i class="fa fa-heart" aria-hidden="true"id="heartimg"></i> 
+    <h4 class="add"> Add to Cart</h4>
+    </div> 
+    </div>`;
+    container.innerHTML += result;
+  }
+
+
 });
 
 citrus.addEventListener("click", function (event) {
-  fetch(
-    ` http://makeup-api.herokuapp.com/api/v1/products.json?`
-  ) //fetching api data
-    .then((response) => response.json()) //text --> json
-    .then((data) => {
-      console.log(data)
-      container.innerHTML = "";
-      for (let i = 30; i < 70; i++) {
-        let makeup = data[i];
-        //console.log(makeup)
-        let result = `
-        <div class=box>  
-        <img src="${makeup.image_link}" class="image" alt="image" >
-             <p class="Makeup_Name">  ${makeup.name}</p>
-             <h4 class="Makeup_Price">$${makeup.price} <span>(20 % off)</span></h4>
-                <p><i class="fa fa-star" aria-hidden="true"></i>5.6
-                 (125)</p> 
-         <div class="add_cart">   
-         <i class="fa fa-heart" aria-hidden="true"id="heartimg"></i> 
-        <h4 class="add"> Add to Cart</h4>
-        </div> 
-        </div>`;
-        container.innerHTML += result;
-      }
-    });
+  // fetch(
+  //   ` http://makeup-api.herokuapp.com/api/v1/products.json?`
+  // ) //fetching api productData 
+  //   .then((response) => response.json()) //text --> json
+  //   .then((productData ) => {
+  //     console.log(productData )
+  //     container.innerHTML = "";
+  //     for (let i = 30; i < 70; i++) {
+  //       let makeup = productData [i];
+  //       //console.log(makeup)
+  //       let result = `
+  //       <div class=box>  
+  //       <img src="${makeup.image_link}" class="image" alt="image" >
+  //            <p class="Makeup_Name">  ${makeup.name}</p>
+  //            <h4 class="Makeup_Price">$${makeup.price} <span>(20 % off)</span></h4>
+  //               <p><i class="fa fa-star" aria-hidden="true"></i>5.6
+  //                (125)</p> 
+  //        <div class="add_cart">   
+  //        <i class="fa fa-heart" aria-hidden="true"id="heartimg"></i> 
+  //       <h4 class="add"> Add to Cart</h4>
+  //       </div> 
+  //       </div>`;
+  //       container.innerHTML += result;
+  //     }
+  //   });
   // .catch((err) => alert("Nothing found"));
+
+  console.log(productData )
+  container.innerHTML = "";
+  for (let i = 30; i < 70; i++) {
+    let makeup = productData [i];
+    //console.log(makeup)
+    let result = `
+    <div class=box>  
+    <img src="${makeup.image_link}" class="image" alt="image" >
+         <p class="Makeup_Name">  ${makeup.name}</p>
+         <h4 class="Makeup_Price">$${makeup.price} <span>(20 % off)</span></h4>
+            <p><i class="fa fa-star" aria-hidden="true"></i>5.6
+             (125)</p> 
+     <div class="add_cart">   
+     <i class="fa fa-heart" aria-hidden="true"id="heartimg"></i> 
+    <h4 class="add"> Add to Cart</h4>
+    </div> 
+    </div>`;
+    container.innerHTML += result;
+  }
+
+
+
 });
 
 sheet.addEventListener("click", function (event) {
-  fetch(
-    ` http://makeup-api.herokuapp.com/api/v1/products.json?`
-  ) //fetching api data
-    .then((response) => response.json()) //text --> json
-    .then((data) => {
-      console.log(data)
-      container.innerHTML = "";
-      for (let i = 110; i < 150; i++) {
-        let makeup = data[i];
-        //console.log(makeup)
-        let result = `
-        <div class=box>  
-        <img src="${makeup.image_link}" class="image" alt="image" >
-             <p class="Makeup_Name">  ${makeup.name}</p>
-             <h4 class="Makeup_Price">$${makeup.price} <span>(20 % off)</span></h4>
-                <p><i class="fa fa-star" aria-hidden="true"></i>5.6
-                 (125)</p> 
-         <div class="add_cart">   
-         <i class="fa fa-heart" aria-hidden="true"id="heartimg"></i> 
-        <h4 class="add"> Add to Cart</h4>
-        </div> 
-        </div>`;
-        container.innerHTML += result;
-      }
-    });
+  // fetch(
+  //   ` http://makeup-api.herokuapp.com/api/v1/products.json?`
+  // ) //fetching api productData 
+  //   .then((response) => response.json()) //text --> json
+  //   .then((productData ) => {
+  //     console.log(productData )
+  //     container.innerHTML = "";
+  //     for (let i = 110; i < 150; i++) {
+  //       let makeup = productData [i];
+  //       //console.log(makeup)
+  //       let result = `
+  //       <div class=box>  
+  //       <img src="${makeup.image_link}" class="image" alt="image" >
+  //            <p class="Makeup_Name">  ${makeup.name}</p>
+  //            <h4 class="Makeup_Price">$${makeup.price} <span>(20 % off)</span></h4>
+  //               <p><i class="fa fa-star" aria-hidden="true"></i>5.6
+  //                (125)</p> 
+  //        <div class="add_cart">   
+  //        <i class="fa fa-heart" aria-hidden="true"id="heartimg"></i> 
+  //       <h4 class="add"> Add to Cart</h4>
+  //       </div> 
+  //       </div>`;
+  //       container.innerHTML += result;
+  //     }
+  //   });
   // .catch((err) => alert("Nothing found"));
+
+
+  console.log(productData )
+  container.innerHTML = "";
+  for (let i = 110; i < 150; i++) {
+    let makeup = productData [i];
+    //console.log(makeup)
+    let result = `
+    <div class=box>  
+    <img src="${makeup.image_link}" class="image" alt="image" >
+         <p class="Makeup_Name">  ${makeup.name}</p>
+         <h4 class="Makeup_Price">$${makeup.price} <span>(20 % off)</span></h4>
+            <p><i class="fa fa-star" aria-hidden="true"></i>5.6
+             (125)</p> 
+     <div class="add_cart">   
+     <i class="fa fa-heart" aria-hidden="true"id="heartimg"></i> 
+    <h4 class="add"> Add to Cart</h4>
+    </div> 
+    </div>`;
+    container.innerHTML += result;
+  }
+
+
 });
 
 aquaholic.addEventListener("click", function (event) {
-  fetch(
-    ` http://makeup-api.herokuapp.com/api/v1/products.json?`
-  ) //fetching api data
-    .then((response) => response.json()) //text --> json
-    .then((data) => {
-      console.log(data)
-      container.innerHTML = "";
-      for (let i = 110; i < 150; i++) {
-        let makeup = data[i];
-        //console.log(makeup)
+  // fetch(
+  //   ` http://makeup-api.herokuapp.com/api/v1/products.json?`
+  // ) //fetching api productData 
+  //   .then((response) => response.json()) //text --> json
+  //   .then((productData ) => {
+  //     console.log(productData )
+  //     container.innerHTML = "";
+  //     for (let i = 110; i < 150; i++) {
+  //       let makeup = productData [i];
+  //       //console.log(makeup)
 
-        let result = `
-        <div class="box"  onclick="movieDetail(event) >  
-        <img src="${makeup.image_link}"  onclick="movieDetail(event)" id="${makeup.id}" class="image" alt="image" >
-             <p class="Makeup_Name">  ${makeup.name}</p>
-             <h4 class="Makeup_Price">$${makeup.price} <span>(20 % off)</span></h4>
-                <p><i class="fa fa-star" aria-hidden="true"></i>5.6
-                 (125)</p> 
-         <div class="add_cart">   
-         <i class="fa fa-heart" aria-hidden="true"id="heartimg"></i> 
-        <h4 class="add"> Add to Cart</h4>
-        </div> 
-        </div>`;
-        container.innerHTML += result;
+  //       let result = `
+  //       <div class="box"  onclick="movieDetail(event) >  
+  //       <img src="${makeup.image_link}"  onclick="movieDetail(event)" id="${makeup.id}" class="image" alt="image" >
+  //            <p class="Makeup_Name">  ${makeup.name}</p>
+  //            <h4 class="Makeup_Price">$${makeup.price} <span>(20 % off)</span></h4>
+  //               <p><i class="fa fa-star" aria-hidden="true"></i>5.6
+  //                (125)</p> 
+  //        <div class="add_cart">   
+  //        <i class="fa fa-heart" aria-hidden="true"id="heartimg"></i> 
+  //       <h4 class="add"> Add to Cart</h4>
+  //       </div> 
+  //       </div>`;
+  //       container.innerHTML += result;
 
 
-      }
-    })
-    .catch((err) => alert("Nothing found"))
+  //     }
+  //   })
+    //.catch((err) => alert("Nothing found"))
+
+    console.log(productData )
+    container.innerHTML = "";
+    for (let i = 110; i < 150; i++) {
+      let makeup = productData [i];
+      //console.log(makeup)
+
+      let result = `
+      <div class="box"  onclick="movieDetail(event) >  
+      <img src="${makeup.image_link}"  onclick="movieDetail(event)" id="${makeup.id}" class="image" alt="image" >
+           <p class="Makeup_Name">  ${makeup.name}</p>
+           <h4 class="Makeup_Price">$${makeup.price} <span>(20 % off)</span></h4>
+              <p><i class="fa fa-star" aria-hidden="true"></i>5.6
+               (125)</p> 
+       <div class="add_cart">   
+       <i class="fa fa-heart" aria-hidden="true"id="heartimg"></i> 
+      <h4 class="add"> Add to Cart</h4>
+      </div> 
+      </div>`;
+      container.innerHTML += result;
+
+
+    }
+
+
 });
 
 
